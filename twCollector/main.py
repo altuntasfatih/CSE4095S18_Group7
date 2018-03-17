@@ -27,12 +27,12 @@ def collectTweet(userlist):
         mdb_writer = MongodbWriter(tokenized_tweet_generator)
         _count=mdb_writer.saveTokenize(uname);
 
-        print("{} 's {} numbers tweets added in seconds {}".format(uname,_count,time.time()-endTime))
+        print("{} 's {} numbers tweets added in seconds {}".format(uname,_count,int(time.time()-endTime)))
         endTime = time.time();
-        total=total+_count
+        total=total+int(_count)
 
 
-    print("{} users , {} tweets , in {} seconds {} ".format(len(userlist),total,int(time.time()-start_time())))
+    print("{} users , {} tweets , in  {} seconds".format(len(userlist),total,int(time.time()-start_time)))
 
 def main():
 
