@@ -6,8 +6,6 @@ from tweettokenizer import TwitterTokenizer
 from mongoutils import *
 import sys,time
 
-# Twitter API
-# You should sign in to twitter developers to get these
 consumer_key = "767Q6lhPqOda7RYn9ylMi8ukn"
 consumer_secret = "UgpWZwROIx6I5Es63q1y6hGdV5pEBtNMw02OjcOfYWZyf6fT5p"
 access_token = "2194089737-wa5GEyuYr35j49Gdzwwgqs4elBVp3ZEAtGHub3l"
@@ -36,13 +34,6 @@ def collectTweet(userlist):
     print("{} users , {} tweets , in {} seconds {} ".format(len(userlist),total,int(time.time()-start_time())))
 
 def main():
-
-
-    #if len(sys.argv) < 2:
-    #    exit()
-
-    #print(sys.argv[0])
-    #print(sys.argv[1])
 
     with open("userlist.txt") as f:
         content = f.readlines()

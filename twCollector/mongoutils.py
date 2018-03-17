@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import pymongo
-import re
+
 
 DBPATH = "mongodb://localhost:27017/"
 db_name = 'Twitter'
@@ -30,13 +28,14 @@ class MongodbWriter(MongodbClient):
 
     def saveTokenize(self,username):
         count=0;
-        for tweet in self.tweets_generator:
+        for tweet,pure in self.tweets_generator:
             selected_tweets = filter(lambda x: x not in ["RT","https","co","t","ve","in","e"], tweet)
 
             tw = {
-                "username": "Foter",
+                "username": username,
                 'done': 0,
-                'tweets': dict((t, 0) for t in list(selected_tweets)),
+                "tweet":pure,
+                'wordsoftweets': dict((t, 0) for t in list(selected_tweets)),
                 }
             self.collection.insert_one(tw)
             count+=1
