@@ -1,4 +1,12 @@
-# CSE4095S18_Group7
-## Gençler buyuk amme hizmeti  burdan
-# Sayin Hocam  ek puan  isteriz  :)
-## Muratcim çetiner kardeşim teüşekürler haziladiğin templatin uzerinden modifiye ettim
+# Gençler buyuk amme hizmeti  burda .d
+## Sayin Hocam  ek puan  isteriz  :)
+## Murat çetiner kardeşim teüşekürler haziladiğin templatin uzerinden modifiye ettim
+
+
+* server.py flask  freamworku kullanan bir web app çaliştiriyor,ordan save butonuna tiklayinca mongodb gidip set ediyor seçilen etiketleri,ardindan sayfayi yeniden yükleyip, etiketsiz başka bir tweet çekiyor bu şekilde bir loop da  biter bu etiketleme işi inş :D
+* twCollector -> çok spesifik bişey yok .d
+
+
+
+
+### Etiketleme işi bitince tekrar private yapcam hocam :)
