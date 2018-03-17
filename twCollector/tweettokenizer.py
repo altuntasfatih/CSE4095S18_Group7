@@ -16,5 +16,3 @@ class TwitterTokenizer:
     def __iter__(self):
         for doc in self.doc_generator:
             yield (self.tokenizer.tokenize(doc["text"]),doc["text"])
-
-

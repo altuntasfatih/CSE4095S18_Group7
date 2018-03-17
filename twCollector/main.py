@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from tweetcollector import TwitterAPI
-from tweettokenizer import TwitterTokenizer
-from mongoutils import *
-import sys,time
+from twCollector.tweetcollector import TwitterAPI
+from twCollector.tweettokenizer import TwitterTokenizer
+from twCollector.mongoutils import *
+import time
 
 consumer_key = "767Q6lhPqOda7RYn9ylMi8ukn"
 consumer_secret = "UgpWZwROIx6I5Es63q1y6hGdV5pEBtNMw02OjcOfYWZyf6fT5p"
@@ -17,6 +17,7 @@ def collectTweet(userlist):
 
     tw = TwitterAPI(consumer_key, consumer_secret, access_token, access_token_secret)
     start_time = time.time();
+    endTime=time.time();
     total=0
     for uname in userlist:
 

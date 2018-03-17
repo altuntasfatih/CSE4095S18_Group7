@@ -1,11 +1,9 @@
 
 import pymongo
 
-
 DBPATH = "mongodb://localhost:27017/"
 db_name = 'Twitter'
 collection_name= 'Tweets'
-
 
 class MongodbClient:
     def __init__(self):
@@ -29,7 +27,7 @@ class MongodbWriter(MongodbClient):
     def saveTokenize(self,username):
         count=0;
         for tweet,pure in self.tweets_generator:
-            selected_tweets = filter(lambda x: x not in ["RT","https","co","t","ve","in","e"], tweet)
+            selected_tweets = filter(lambda x: x not in ["RT","https","co","t","ve","in","e"], tweet)#todo Caneeer şunu regex yapda aksin buralar
 
             tw = {
                 "username": username,
@@ -48,3 +46,24 @@ class MongodbReader(MongodbClient):
     def __iter__(self):
         for doc in self.collection.find():
             yield doc
+
+    def getOneItem(self,filter={"done":0}):
+        return  self.collection.find_one(filter)
+
+    def updateOneItem(self,id,_labeed):
+
+        result = self.collection.update(
+            {"_id": id},
+            {
+                '$set': {
+                    'done': 1,
+                    'wordsoftweets':_labeed
+                }
+            }
+        )
+        return result
+
+
+
+
+
