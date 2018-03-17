@@ -6,10 +6,10 @@ from twCollector.tweettokenizer import TwitterTokenizer
 from twCollector.mongoutils import *
 import time
 
-consumer_key = "767Q6lhPqOda7RYn9ylMi8ukn"
-consumer_secret = "UgpWZwROIx6I5Es63q1y6hGdV5pEBtNMw02OjcOfYWZyf6fT5p"
-access_token = "2194089737-wa5GEyuYr35j49Gdzwwgqs4elBVp3ZEAtGHub3l"
-access_token_secret = "3IE4Ga4bdaDrtNcE3kJm4fBHXEuqGcBTuIEAvDMGOdDTD"
+consumer_key =
+consumer_secret =
+access_token =
+access_token_secret =
 
 
 
