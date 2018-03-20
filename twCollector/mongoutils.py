@@ -1,15 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-import pymongo
+import pymongo, os
 
-DBPATH = "mongodb://localhost:27017/"
-db_name = 'Twitter'
+# "mLab" Remote Database URI
+#DBPATH = os.environ['ACCESS_TOKEN']
+DBPATH = "mongodb://fotercim:212427123a1@ds235328.mlab.com:35328/data-science-database"
+db_name = 'data-science-database'
 collection_name= 'Tweets'
+
 
 class MongodbClient:
     def __init__(self):
-        self.mongo_client = pymongo.MongoClient(DBPATH)
-        self.db = self.mongo_client[collection_name]
+        self.mongo_client = pymongo.MongoClient(DBPATH, connectTimeoutMS=30000,
+                                                        socketTimeoutMS=None,
+                                                        socketKeepAlive=True,
+                                                        connect=False)
+        self.db = self.mongo_client[db_name]
         self.collection = self.db[collection_name]
+
+        self.currentTweetID = None
 
 
 class MongodbWriter(MongodbClient):
@@ -27,9 +37,10 @@ class MongodbWriter(MongodbClient):
     def saveTokenize(self,username):
         count=0;
         for tweet,pure in self.tweets_generator:
-            selected_tweets = filter(lambda x: x not in ["RT","https","co","t","ve","in","e"], tweet)#todo Caneeer şunu regex yapda aksin buralar
+            selected_tweets = filter(lambda x: x not in ["RT","https","co","t","ve","in","e"], tweet) #todo Caneeer şunu regex yapda aksin buralar
 
             tw = {
+                "tweetID" : username + "-" + str(count),
                 "username": username,
                 'done': 0,
                 "tweet":pure,
@@ -48,7 +59,24 @@ class MongodbReader(MongodbClient):
             yield doc
 
     def getOneItem(self,filter={"done":0}):
+        self.currentTweetID = self.collection.find_one(filter)["tweetID"]
+        #print(self.getPreviousItem())
         return  self.collection.find_one(filter)
+
+    def getPreviousItem(self):
+        previousTweetID = self.findPreviousTweetID(self.currentTweetID)
+        self.currentTweetID = previousTweetID       # swap "currentTweetID" by "previousTweetID"
+        filter = {"tweetID": previousTweetID}
+        return self.collection.find_one(filter=filter)
+
+    def findPreviousTweetID(self, currentTweetID):  # @ufukgurbuz44-8
+        tweetID = currentTweetID.split("-")
+        _id = int(tweetID[1])
+        if(_id != 0):
+            _id = _id - 1
+
+        previousTweetID = tweetID[0] + "-" + str(_id)
+        return previousTweetID
 
     def updateOneItem(self,id,_labeed):
 
@@ -62,8 +90,3 @@ class MongodbReader(MongodbClient):
             }
         )
         return result
-
-
-
-
-

@@ -1,0 +1,9 @@
+Flask
+Flask-RESTful
+uwsgi
+psycopg2
+pymongo
+tweepy
+corpora
+numpy
+nltk

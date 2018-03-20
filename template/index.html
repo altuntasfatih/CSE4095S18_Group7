@@ -2,39 +2,44 @@
 <html lang="tr-TR">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script type='text/javascript' src='/static/app.js'></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type='text/javascript' src='/static/app.js'></script>
 </head>
 
-<body>
-<div class="container-fluid">
-  <h2>Etiketle Babam etikle</h2>
-  <div class="table-responsive">
-    <br>
-    <p id="u-name">a</p>
-    <br>
-    <p id="pure-tweet">a</p>
-    <br>
-  <table id="tweets-table" class="table table-hover">
-    <thead>
-      <tr>
-        <th><i class="fa fa-key"></i>ID</th>
-        <th><i class="fa fa-twitter"></i>Current_Label</th>
-        <th><i class="fa fa-tags"></i>Label</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+    <body>
+        <div class="container-fluid">
+            <h2 style="color:#069">CSE4095S18_Group4 Etiketleme</h2>
 
-  <button id="save-btn" type="button" class="btn btn-primary">Save</button>
-  </div>
-</div>
-</body>
+            <div class="table-responsive">
+                </br>
+                <p id="tweet-id">a</p>
+                </br>
+                <p id="pure-tweet">a</p>
+                </br>
+
+                <table id="tweets-table" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fa fa-key"></i>Words</th>
+                            <th><i class="fa fa-twitter"></i>Current_Label</th>
+                            <th><i class="fa fa-tags"></i>Label</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <button id="previous-btn" type="button" class="btn btn-primary" style="margin-bottom:10px">Previous</button>
+
+                <button id="save-btn" type="button" class="btn btn-primary" style="float: right;margin:0px 5% 10px 0px">Save</button>
+
+            </div>
+
+        </div>
+    </body>
 </html>
