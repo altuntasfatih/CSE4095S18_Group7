@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     var dropdown_menu = "<td>" +
                             "<select id='dropdown' class='selectpicker'>" +
+                                "<option>TRASH</option>" +
                                 "<option>YAS</option>" +
                                 "<option>ILETISIM</option>" +
                                 "<option>TARIH</option>" +
@@ -12,7 +13,7 @@ $(document).ready(function(){
                                 "<option>MEKAN</option>" +
                                 "<option>OLAY</option>" +
                                 "<option>ISIM</option>" +
-                                "<option>TRASH</option>" +
+
                             "</select>" +
                         "</td>";
 

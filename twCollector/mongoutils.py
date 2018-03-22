@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import pymongo, os
+import pymongo
 
-# "mLab" Remote Database URI
-#DBPATH = os.environ['ACCESS_TOKEN']
-DBPATH = "mongodb://fotercim:212427123a1@ds235328.mlab.com:35328/data-science-database"
-db_name = 'data-science-database'
-collection_name= 'Tweets'
-
+from twCollector.constant import DBPATH,db_name,collection_name
 
 class MongodbClient:
     def __init__(self):
