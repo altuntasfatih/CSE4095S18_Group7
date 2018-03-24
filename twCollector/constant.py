@@ -9,7 +9,7 @@ access_token_secret = None
 
 if "ACCESS_TOKEN" in os.environ:
 
-    DBPATH = os.environ['ACCESS_TOKEN']
+    DBPATH = os.environ['DBPATH']
     consumer_key = os.environ['CONSUMER_KEY']
     consumer_secret = os.environ['CONSUMER_SECRET_KEY']
     access_token = os.environ['ACCESS_TOKEN']

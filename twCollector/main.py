@@ -10,6 +10,7 @@ from twCollector.constant import consumer_key,consumer_secret,access_token,acces
 def collectTweet(userlist):
 
     tw = TwitterAPI(consumer_key, consumer_secret, access_token, access_token_secret)
+    print(consumer_key," ",consumer_secret," ",access_token," ",access_token_secret)
     start_time = time.time();
     endTime=time.time();
     total=0

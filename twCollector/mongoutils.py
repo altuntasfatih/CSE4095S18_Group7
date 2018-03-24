@@ -6,6 +6,7 @@ import pymongo
 from twCollector.constant import DBPATH,db_name,collection_name
 
 class MongodbClient:
+
     def __init__(self):
         self.mongo_client = pymongo.MongoClient(DBPATH, connectTimeoutMS=30000,
                                                         socketTimeoutMS=None,
