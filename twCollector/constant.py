@@ -15,7 +15,8 @@ if "ACCESS_TOKEN" in os.environ:
     access_token = os.environ['ACCESS_TOKEN']
     access_token_secret = os.environ['ACCESS_TOKEN_SECRET']
 else:
-    DBPATH = "mongodb://fotercim:212427123a1@ds235328.mlab.com:35328/data-science-database"
+
+    DBPATH = "mongodb://fotercim:212427123a1@ds121349.mlab.com:21349/data-science-database"
     consumer_key = 'GF7CSQPUIVtNYfjcCFDaO81aN'
     consumer_secret = 'uYzrrOqo3vX3P3zcRO4KPzLl6C7pNSO7kdkbBhUT0Rz32OrsfQ'
     access_token = '165432951-aQH41KBBuDfqpRQQfh6S0ocRbO7UpXn9f5Ri6CUk'

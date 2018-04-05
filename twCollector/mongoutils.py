@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import pymongo
-
+from random import randint
 from twCollector.constant import DBPATH,db_name,collection_name
 
 class MongodbClient:
 
     def __init__(self):
+        print(DBPATH)
         self.mongo_client = pymongo.MongoClient(DBPATH, connectTimeoutMS=30000,
                                                         socketTimeoutMS=None,
                                                         socketKeepAlive=True,
@@ -55,9 +56,11 @@ class MongodbReader(MongodbClient):
             yield doc
 
     def getOneItem(self,filter={"done":0}):
-        self.currentTweetID = self.collection.find_one(filter)["tweetID"]
-        #print(self.getPreviousItem())
-        return  self.collection.find_one(filter)
+        r=self.collection.count(filter)
+        temp=self.collection.find(filter).limit(1).skip(randint(0,r-1))
+        temp=temp.next()
+        self.currentTweetID=temp["tweetID"]
+        return  temp
 
     def getPreviousItem(self):
         previousTweetID = self.findPreviousTweetID(self.currentTweetID)
