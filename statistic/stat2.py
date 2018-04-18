@@ -38,7 +38,7 @@ print(average)
 
 frequent_items=average.drop(['token_length'],axis=1)
 frequent_items=frequent_items.groupby('c_id')['token_text']
-print(frequent_items)
+
 
 print(frequent_items.apply(top10))
 print(frequent_items.apply(top50))
