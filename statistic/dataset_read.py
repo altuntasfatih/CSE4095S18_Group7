@@ -58,7 +58,6 @@ for index_outher, row in document_token_pure.iteritems():
 
 
 
-
 writer = pd.ExcelWriter('document.xlsx')
 documents.to_excel(writer)
 writer.save()
