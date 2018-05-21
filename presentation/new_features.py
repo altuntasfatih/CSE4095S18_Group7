@@ -82,6 +82,7 @@ error_row = []
 for index, row in document_token_new.iterrows():
     if type(row['c_id']) is type(None):
         error_row.append(index)
+
         
 document_token_new = document_token_new.drop(document_token_new.index[error_row])
 
