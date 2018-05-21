@@ -28,3 +28,4 @@ accuracy_container['random_forest']=sklearn.metrics.accuracy_score(labels, rf_pr
 print ("Accuracy Score of Random Forests Classifier: ")
 print(accuracy_container['random_forest'])
 
+
