@@ -3,7 +3,7 @@ import openpyxl
 #document = pd.read_csv('presentation/document.csv')
 #document_token = pd.read_csv('statistic/document_token.csv',encoding = "ISO-8859-1")
 
-number_of_rows = len(documents)
+#number_of_rows = len(documents)
 #number of columns is missing
 
 document_token_new = document_token.copy()
