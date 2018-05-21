@@ -78,6 +78,12 @@ for index, row in document_token_new.iterrows():
     document_token_new.at[index,'number_of_nonAlphanumeric'] = len(nonAlphanumberic_word)
     document_token_new.at[index,'nonAlphanumericRatio'] = len(nonAlphanumberic_word) / len(word)
 
+error_row = []
+for index, row in document_token_new.iterrows():
+    if type(row['c_id']) is type(None):
+        error_row.append(index)
+        
+document_token_new = document_token_new.drop(document_token_new.index[error_row])
 
 document_token_new.to_csv('presentation/document_token_new_features.csv',index=False)
 writer = pd.ExcelWriter('presentation/document_token_new_features.xlsx')
