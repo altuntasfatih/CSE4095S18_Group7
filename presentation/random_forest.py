@@ -11,7 +11,7 @@ from pandas import DataFrame,Series
 import matplotlib.pyplot as plt
 
 from sklearn.ensemble import RandomForestClassifier
-rf_classifier=RandomForestClassifier(n_estimators=50)
+rf_classifier=RandomForestClassifier(n_estimators=10)
 
 t0=time()
 rf_classifier=rf_classifier.fit(variables,labels)
@@ -29,3 +29,14 @@ print ("Accuracy Score of Random Forests Classifier: ")
 print(accuracy_container['random_forest'])
 
 
+from sklearn.metrics import f1_score
+random_forest_f1_score = f1_score(labels, rf_predictions, average='macro')
+print("Random Forest F1 Score:",random_forest_f1_score)
+
+from sklearn.metrics import precision_score
+random_forest_precision_score = precision_score(labels, rf_predictions, average='macro')
+print("Random Forest Precision Score:",random_forest_precision_score)
+
+from sklearn.metrics import recall_score
+random_forest_recall_score = recall_score(labels, rf_predictions, average='macro')
+print("Random Forest Recall Score:",random_forest_recall_score)

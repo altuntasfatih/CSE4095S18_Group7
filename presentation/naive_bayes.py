@@ -79,5 +79,11 @@ from sklearn.metrics import f1_score
 bayes_f1_score = f1_score(labels, bnb_predictions, average='macro')
 print("Bernoulli Naive Bayes F1 Score:",bayes_f1_score)
 
+from sklearn.metrics import precision_score
+bayes_precision_score = precision_score(labels, bnb_predictions, average='macro')
+print("Bernoulli Naive Precision Score:",bayes_precision_score)
 
+from sklearn.metrics import recall_score
+bayes_recall_score = recall_score(labels, bnb_predictions, average='macro')
+print("Bernoulli Naive Bayes Recall Score:",bayes_recall_score)
 
