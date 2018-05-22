@@ -28,3 +28,24 @@ fpr, tpr, thresholds = roc_curve(labels, pred, pos_label=2)
 knn_auc = auc(fpr,tpr)
 print(knn_auc)
 '''
+
+variables_train, variables_test, labels_train, labels_test=train_test_split(
+        variables, labels, test_size=.9, random_state=1)
+
+neigh = KNeighborsClassifier(n_neighbors=3)
+neigh.fit(variables_train,labels_train)
+pred = neigh.predict(variables_test)
+accuracy=sklearn.metrics.accuracy_score(labels_test, pred)
+print(accuracy)
+
+
+from sklearn.model_selection import KFold, cross_val_score
+k_fold = KFold(n_splits=10,shuffle=True)
+for train_indices, test_indices in k_fold.split(variables):
+    x_train, x_test = variables[train_indices], variables[test_indices]
+    y_train, y_test = labels[train_indices], labels[test_indices]
+    neigh = KNeighborsClassifier(n_neighbors=3)
+    neigh.fit(x_train,y_train)
+    pred = neigh.predict(x_test)
+    accuracy=sklearn.metrics.accuracy_score(y_test, pred)
+    print(accuracy)
