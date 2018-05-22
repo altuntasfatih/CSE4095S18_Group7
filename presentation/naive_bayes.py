@@ -74,3 +74,10 @@ accuracy_container['b_naive_bayes']=nb_ascore
 print("Bernoulli Naive Bayes Accuracy Score: %f"%accuracy_container['b_naive_bayes'])
 print("Training Time: %f"%training_time_container['b_naive_bayes'])
 print("Prediction Time: %f"%prediction_time_container['b_naive_bayes'])
+
+from sklearn.metrics import f1_score
+bayes_f1_score = f1_score(labels, bnb_predictions, average='macro')
+print("Bernoulli Naive Bayes F1 Score:",bayes_f1_score)
+
+
+
