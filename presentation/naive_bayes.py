@@ -98,8 +98,24 @@ bnb_predictions=bnb_classifier.predict(variables_test)
 nb_ascore=sklearn.metrics.accuracy_score(labels_test, bnb_predictions)
 print(nb_ascore)
 
+from sklearn.metrics import f1_score
+bayes_f1_score = f1_score(labels_test, bnb_predictions, average='macro')
+print("Bernoulli Naive Bayes F1 Score:",bayes_f1_score)
+
+from sklearn.metrics import precision_score
+bayes_precision_score = precision_score(labels_test, bnb_predictions, average='macro')
+print("Bernoulli Naive Precision Score:",bayes_precision_score)
+
+from sklearn.metrics import recall_score
+bayes_recall_score = recall_score(labels_test, bnb_predictions, average='macro')
+print("Bernoulli Naive Bayes Recall Score:",bayes_recall_score)
+
 ################################################################
 
+fold_validation_sum = 0
+fold_validation_f1 = 0
+fold_validation_precision = 0
+fold_validation_recall = 0
 
 from sklearn.model_selection import KFold, cross_val_score
 k_fold = KFold(n_splits=10,shuffle=True)
@@ -112,9 +128,30 @@ for train_indices, test_indices in k_fold.split(variables):
     pred=bnb_classifier.predict(x_test)
 
     accuracy=sklearn.metrics.accuracy_score(y_test, pred)
-    print(accuracy)
-
+    fold_validation_sum = fold_validation_sum + accuracy
     
+    from sklearn.metrics import f1_score
+    bayes_f1_score = f1_score(y_test, pred, average='macro')
+    fold_validation_f1 = fold_validation_f1 + bayes_f1_score
+    
+    
+    from sklearn.metrics import precision_score
+    bayes_precision_score = precision_score(y_test, pred, average='macro')
+    fold_validation_precision = fold_validation_precision + bayes_precision_score
+    
+    from sklearn.metrics import recall_score
+    bayes_recall_score = recall_score(y_test, pred, average='macro')
+    fold_validation_recall = fold_validation_recall + bayes_recall_score
+    
+fold_validation_sum = fold_validation_sum / 10
+fold_validation_f1 = fold_validation_f1 / 10
+fold_validation_precision = fold_validation_precision / 10
+fold_validation_recall = fold_validation_recall / 10
+
+print("Bernoulli Naive Bayes Accuracy Score:",fold_validation_sum)
+print("Bernoulli Naive Bayes F1 Score:",fold_validation_f1)
+print("Bernoulli Naive Precision Score:",fold_validation_precision)
+print("Bernoulli Naive Bayes Recall Score:",fold_validation_recall)
     
 
 

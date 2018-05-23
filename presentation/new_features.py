@@ -90,5 +90,3 @@ document_token_new.to_csv('presentation/document_token_new_features.csv',index=F
 writer = pd.ExcelWriter('presentation/document_token_new_features.xlsx')
 document_token_new.to_excel(writer)
 writer.save()
-
-test = dataframe.groupby(['class']).count()
