@@ -7,25 +7,25 @@ collection_name= 'Tweets'
 url=["mongodb://fotercim:212427123a1@ds121349.mlab.com:21349/data-science-database","mongodb://localhost:27017/data-science-database"]
 
 def normalize(class_name):
-    if(class_name.upper() == 'YAS'):
+    if(class_name.upper() == 'YAS' or class_name.upper() == 'AGE'):
         return 1
-    if(class_name.upper() == 'ILETISIM'):
+    if(class_name.upper() == 'ILETISIM' or class_name.upper() == 'CONTACT'):
         return 2
-    if(class_name.upper() == 'TARIH'):
+    if(class_name.upper() == 'TARIH' or class_name.upper() == 'DATE'):
         return 3
-    if(class_name.upper() == 'ID'):
+    if(class_name.upper() == 'ID' or class_name.upper() == 'ID'):
         return 4
-    if(class_name.upper() == 'ADDRESS'):
+    if(class_name.upper() == 'ADDRESS' or class_name.upper() == 'ADDRESS'):
         return 5
-    if(class_name.upper() == 'MESLEK'):
+    if(class_name.upper() == 'MESLEK' or class_name.upper() == 'JOB'):
         return 6
-    if(class_name.upper() == 'FIRMA'):
+    if(class_name.upper() == 'FIRMA' or class_name.upper() == 'COMPANY'):
         return 7
-    if(class_name.upper() == 'MEKAN'):
+    if(class_name.upper() == 'MEKAN' or class_name.upper() == 'PLACE'):
         return 8
-    if(class_name.upper() == 'OLAY'):
+    if(class_name.upper() == 'OLAY' or class_name.upper() == 'EVENT/ACTIVITY'):
         return 9
-    if(class_name.upper() == 'ISIM'):
+    if(class_name.upper() == 'ISIM' or class_name.upper() == 'NAME'):
         return 10
     if(class_name.upper() == 'TRASH'):
         return 11
@@ -41,7 +41,6 @@ def read_mongo(flag=0):
     cursor = collection.find({'done' : 1})
     df =  pd.DataFrame(list(cursor))
     return df.drop(['_id','done','tweetID'],axis=1)
-
 
 
 df=read_mongo(0)

@@ -87,3 +87,35 @@ from sklearn.metrics import recall_score
 bayes_recall_score = recall_score(labels, bnb_predictions, average='macro')
 print("Bernoulli Naive Bayes Recall Score:",bayes_recall_score)
 
+#################################################################
+
+variables_train, variables_test, labels_train, labels_test=train_test_split(
+        variables, labels, test_size=.9)
+
+bnb_classifier=BernoulliNB()
+bnb_classifier=bnb_classifier.fit(variables_train,labels_train)
+bnb_predictions=bnb_classifier.predict(variables_test)
+nb_ascore=sklearn.metrics.accuracy_score(labels_test, bnb_predictions)
+print(nb_ascore)
+
+################################################################
+
+
+from sklearn.model_selection import KFold, cross_val_score
+k_fold = KFold(n_splits=10,shuffle=True)
+for train_indices, test_indices in k_fold.split(variables):
+    x_train, x_test = variables[train_indices], variables[test_indices]
+    y_train, y_test = labels[train_indices], labels[test_indices]
+    
+    bnb_classifier=BernoulliNB()
+    bnb_classifier=bnb_classifier.fit(x_train,y_train)
+    pred=bnb_classifier.predict(x_test)
+
+    accuracy=sklearn.metrics.accuracy_score(y_test, pred)
+    print(accuracy)
+
+    
+    
+
+
+
