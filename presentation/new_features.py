@@ -86,6 +86,103 @@ for index, row in document_token_new.iterrows():
         
 document_token_new = document_token_new.drop(document_token_new.index[error_row])
 
+
+############################################################################################
+doc_token_prev = document_token_new.copy()
+doc_token_prev['previous_word_text'] = ''
+for index, row in document_token_new.iterrows():
+    doc_id = int(row['doc_id'])
+    token_id = int(row['token_id']) 
+    query = 'doc_id == ' + str(doc_id) + ' & token_id == ' + str(token_id-1)
+    response = document_token_new.query(query)
+    try:
+        for i,r in response.iterrows():
+            doc_token_prev.at[index,'previous_word_text'] = str(r['token_text'])
+    except:
+        pass
+
+
+doc_token_prev['prev_start_capital']= 0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    try:
+        if word[0].isupper():
+            doc_token_prev.at[index,'prev_start_capital'] = 1
+    except:
+        pass
+
+
+doc_token_prev['prev_all_capital']= 0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    try:
+        if word.isupper():
+            doc_token_prev.at[index,'prev_all_capital'] = 1
+    except:
+        pass
+
+doc_token_prev['prev_capital_ratio']= 0.0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    try:
+        ratio = (sum(1 for c in word if c.isupper())) / len(word)
+        doc_token_prev.at[index,'prev_capital_ratio'] = ratio
+    except:
+        pass
+
+doc_token_prev['prev_length']= 0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    doc_token_prev.at[index,'prev_length'] = len(word)
+
+
+doc_token_prev['prev_vowel_ratio']= 0.0
+doc_token_prev['prev_number_of_vowels']= 0.0
+vowels = list("aeıioöuü")
+consonants = list("bcçdfgğhjklmnpqrsştvwyxz") 
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text']).lower()
+    
+    number_of_consonants = sum(word.count(c) for c in consonants)
+    number_of_vowels = sum(word.count(c) for c in vowels)
+    
+    try:
+        vowel_ratio = number_of_consonants / number_of_vowels
+    except:
+        vowel_ratio = number_of_consonants
+    
+    doc_token_prev.at[index,'prev_vowel_ratio'] = vowel_ratio
+    doc_token_prev.at[index,'prev_number_of_vowels'] = number_of_vowels
+
+#Number of numeric characters (The number of numerical characters {0,1,2,3,4,5,6,7,8,9} in the term)
+#Numeric Ratio (The ratio of numerical characters {0,1,2,3,4,5,6,7,8,9} in the term)    
+doc_token_prev['prev_numeric_charecter']= 0.0
+doc_token_prev['prev_numeric_ratio']= 0.0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    try:
+        number_numeric_charecter = sum(1 for c in word if c.isnumeric())
+        doc_token_prev.at[index,'prev_numeric_charecter'] = number_numeric_charecter
+        doc_token_prev.at[index,'prev_numeric_ratio'] = number_numeric_charecter / len(word)
+    except:
+        pass
+    
+#Number Of NonAlphanumeric  (The number of characters except alphanumerical characters a-z and 0-9 in the term) 
+#NonAlphanumericRatio (The ratio of characters except alphanumerical characters a-z and 0-9 in the term) 
+doc_token_prev['prev_number_of_nonAlphanumeric']= 0.0
+doc_token_prev['prev_nonAlphanumericRatio ']= 0.0
+for index, row in doc_token_prev.iterrows():
+    word = str(row['previous_word_text'])
+    try:
+        nonAlphanumberic_word = ''.join([i for i in word if not i.isalnum()])
+        
+        doc_token_prev.at[index,'prev_number_of_nonAlphanumeric'] = len(nonAlphanumberic_word)
+        doc_token_prev.at[index,'prev_nonAlphanumericRatio'] = len(nonAlphanumberic_word) / len(word) 
+    except:
+        pass
+##########################################################################################
+
+
 document_token_new.to_csv('presentation/document_token_new_features.csv',index=False)
 writer = pd.ExcelWriter('presentation/document_token_new_features.xlsx')
 document_token_new.to_excel(writer)

@@ -60,6 +60,11 @@ for index_outher, row in document_token_pure.iteritems():
                                'token_text':key,
                                'c_id': normalize(str(value)),
                                },ignore_index=True)
+counter = 272
+for index, row in document_token.iterrows():
+    if index > 3541:
+        new_id = counter + int(row['doc_id'])
+        document_token.at[index,'doc_id'] = new_id
 
     
 writer = pd.ExcelWriter('document.xlsx')
