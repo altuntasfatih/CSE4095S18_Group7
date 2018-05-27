@@ -61,8 +61,7 @@ for index_outher, row in document_token_pure.iteritems():
                                'c_id': normalize(str(value)),
                                },ignore_index=True)
 
-
-
+    
 writer = pd.ExcelWriter('document.xlsx')
 documents.to_excel(writer)
 writer.save()
