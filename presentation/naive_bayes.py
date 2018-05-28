@@ -14,13 +14,9 @@ training_time_container={'b_naive_bayes':0,'mn_naive_bayes':0,'random_forest':0,
 prediction_time_container={'b_naive_bayes':0,'mn_naive_bayes':0,'random_forest':0,'linear_svm':0}
 accuracy_container={'b_naive_bayes':0,'mn_naive_bayes':0,'random_forest':0,'linear_svm':0}
 
-dataframe = document_token_new.copy()
-dataframe['class'] = dataframe['c_id']
-dataframe = dataframe[dataframe['class'] != 11]
-dataframe.__delitem__('c_id')
-dataframe.__delitem__('doc_id')
-dataframe.__delitem__('token_id')
 
+
+'''
 corpus=dataframe.token_text
 vectorizer = TfidfVectorizer()
 tfidf_matrix=vectorizer.fit_transform(corpus).todense()
@@ -42,7 +38,7 @@ for index, row in dataframe_notext.iterrows():
         
     counter+=1
 
-
+'''
 '''
 variables_train, variables_test, labels_train, labels_test=train_test_split(
         variables, labels, test_size=.3)
@@ -51,8 +47,8 @@ print('Shape of Training Data: '+str(variables_train.shape))
 print('Shape of Test Data: '+str(variables_test.shape))
 '''
 ################################################
-variables = tfidf_matrix.iloc[:,:].values
-labels = dataframe.iloc[:,12].values
+variables = dataframe_x.iloc[:,:].values
+labels = dataframe_y.iloc[:,:].values
 labels = labels.astype('float64')
 
 

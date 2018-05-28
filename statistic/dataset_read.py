@@ -67,7 +67,7 @@ for index, row in document_token.iterrows():
         document_token.at[index,'doc_id'] = new_id
 
     
-writer = pd.ExcelWriter('document.xlsx')
+writer = pd.ExcelWriter('presentation/CSE4062_Group7_raw_dataset.xlsx')
 documents.to_excel(writer)
 writer.save()
 
